@@ -24,7 +24,8 @@ blog: <https://blog.naver.com/rorean> <br/>
                         
 - #### application.yml
 
-
+    
+    
     server:
       port: 9090    
       
@@ -44,7 +45,11 @@ blog: <https://blog.naver.com/rorean> <br/>
         password: 
         driver-class-name: org.h2.Driver
         url: jdbc:h2:mem:jpa;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE  
-
+    
+      
+      
+      
+      
 
 <hr/>
 
@@ -58,7 +63,8 @@ Spring Framework에서 JPA를 편리하게 사용할 수 있게 Spring Data Jpa�
 
     @Configuration
     @EnableJpaRepositories
-
+    
+    
 - #### JPA Annotaion
 
 
@@ -67,14 +73,16 @@ Spring Framework에서 JPA를 편리하게 사용할 수 있게 Spring Data Jpa�
     @Column 
     @Id
     @GeneratedValue 
-
+    
+    
 - #### Repository
     
     
     public interface UserRepository extends JpaRepository<User, Long>
     {
     }
-
+    
+    
 
 [참고파일]   
 <a href="https://github.com/LEEHANI/Jpa-Tutorial/blob/master/src/main/java/com/test/web/configurations/JpaConfiguration.java">JpaConfiguration.java</a>  
@@ -178,7 +186,9 @@ PostTag.java
 
     @Configuration
     @EnableJpaAuditing
-    
+        
+        
+        
   - #### Auditing Annotaion
   
   
@@ -186,7 +196,8 @@ PostTag.java
     @CreatedBy
     @LastModifiedDate
     @LastModifiedBy
-
+    
+    
 
 위의 어노테이션을 이용하여 다음과 같이 구현해주면 된다.
  
@@ -254,7 +265,9 @@ PostTag.java
      @DataJpaTest
      @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.ANY)
      @Import(JpaAuditingConfiguration.class)
- 
+     
+     
+     
 Auditing을 사용하고 있다면 @Import(JpaAuditingConfiguration.class)를 해줘야 순조로운 테스트가 가능하다. 
  
 
