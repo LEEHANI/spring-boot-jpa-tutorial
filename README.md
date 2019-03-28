@@ -182,22 +182,22 @@ PostTag.java
 -------------
 컬럼의 최초 생성일자와 생성자, 마지막 수정일자와 수정자를 자동으로 관리해준다. 수정일자는 데이터가 변경될 때마다 변경 시점을 자동으로 넣어주므로 마지막 변경 시점을 알 수 있다.    
   - #### Configuration
-
-
+       
+      
     @Configuration
     @EnableJpaAuditing
         
         
         
   - #### Auditing Annotaion
-  
-  
+      
+     
     @CreatedDate
     @CreatedBy
     @LastModifiedDate
     @LastModifiedBy
-    
-    
+     
+     
 
 위의 어노테이션을 이용하여 다음과 같이 구현해주면 된다.
  
@@ -259,15 +259,13 @@ PostTag.java
  
  
    - #### Annotaion
- 
- 
-     @RunWith(SpringRunner.class)
-     @DataJpaTest
-     @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.ANY)
-     @Import(JpaAuditingConfiguration.class)
-     
-     
-     
+ <pre><code>
+@RunWith(SpringRunner.class)
+@DataJpaTest
+@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.ANY)
+@Import(JpaAuditingConfiguration.class)
+</code></pre>    
+          
 Auditing을 사용하고 있다면 @Import(JpaAuditingConfiguration.class)를 해줘야 순조로운 테스트가 가능하다. 
  
 
