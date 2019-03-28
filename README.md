@@ -1,7 +1,7 @@
 Jpa-Tutorial 
 =============
 
-<strong><span style="color:hotPink">Spring Boot</span>로 Spring Data Jpa, Jpa Auditing, Envers, @DataJpaTest를 다뤄봤습니다.</strong>   
+<strong><span style="color:orange ">Spring Boot</span>로 Spring Data Jpa, Jpa Auditing, Envers, @DataJpaTest를 다뤄봤습니다.</strong>   
 
 자세한 사항은 블로그를 참고해주세요 :)
 
@@ -25,63 +25,55 @@ blog: <https://blog.naver.com/rorean> <br/>
 - #### application.yml
 
     
-    
-    server:
-      port: 9090    
-      
-    spring:  
-      h2:
-        console:
-          enabled: true
-          path: /h2-console
-      jpa:
-        database-platform: org.hibernate.dialect.H2Dialect
-        hibernate:
-          ddl-auto: update
-          #ddl-auto: create
-          #ddl-auto: none
-      datasource:
-        username: sa
-        password: 
-        driver-class-name: org.h2.Driver
-        url: jdbc:h2:mem:jpa;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE  
-    
-      
-      
-      
-      
+<pre><code>
+server:
+  port: 9090
+spring:
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: update
+#      ddl-auto: none
+#      ddl-auto: create
+  datasource:
+    username: sa
+    password: 
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:jpa;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE  
+</code></pre>
 
 <hr/>
 
 
 1.Spring Data Jpa 
 -------------
-Spring Framework에서 JPA를 편리하게 사용할 수 있게 Spring Data Jpa를 제공하고있다. JPA는 반복적인 CRUD의 굴레에서 벗어나게 해주고 간단한 SQL을 Java로 대체할 수 있다.
+Spring Framework에서 JPA를 편리하게 사용할 수 있게 Spring Data Jpa를 제공하고있습니다. JPA는 반복적인 CRUD의 굴레에서 벗어나게 해주고 간단한 SQL을 Java로 대체할 수 있습니다.
 
 - #### Configuration   
-
-
-    @Configuration
-    @EnableJpaRepositories
-    
+<pre><code>
+@Configuration
+@EnableJpaRepositories
+</code></pre>    
     
 - #### JPA Annotaion
-
-
-    @Entity
-    @Table
-    @Column 
-    @Id
-    @GeneratedValue 
-    
+<pre><code>
+@Entity
+@Table
+@Column 
+@Id
+@GeneratedValue 
+</code></pre>
     
 - #### Repository
-    
-    
-    public interface UserRepository extends JpaRepository<User, Long>
-    {
-    }
-    
+<pre><code>    
+public interface UserRepository extends JpaRepository<User, Long>
+{
+}
+</code></pre>    
     
 
 [참고파일]   
@@ -145,9 +137,9 @@ Post.java
 #
 
 #### @OneToMany, @ManyToOne (@ManyToMany 변형)
- 개인적으로 @ManyToMany는 복잡한 코드를 유발하고 유지 보수가 어렵다고 생각한다. 그래서 @ManyToMany 단방향, 양방향 대신 M:N을 변형한 **1:N, N:1** 방법을 사용한다.  
+ 개인적으로 @ManyToMany는 복잡한 코드를 유발하고 유지 보수가 어렵다고 생각합니다. 그래서 @ManyToMany 단방향, 양방향 대신 M:N을 변형한 **1:N, N:1** 방법을 권장합니다.
  
- ###### <span style="color:hotPink">Post.java ------< PostTag.java >------- Tag.java </span>
+ ##### <span style="color:orange">Post.java ------< PostTag.java >------- Tag.java</span>
 
 Post.java
 
@@ -180,26 +172,24 @@ PostTag.java
  
 2.JPA Auditing
 -------------
-컬럼의 최초 생성일자와 생성자, 마지막 수정일자와 수정자를 자동으로 관리해준다. 수정일자는 데이터가 변경될 때마다 변경 시점을 자동으로 넣어주므로 마지막 변경 시점을 알 수 있다.    
+컬럼의 최초 생성일자와 생성자, 마지막 수정일자와 수정자를 자동으로 관리합니다. 수정일자는 데이터가 변경될 때마다 변경 시점을 자동으로 넣어주므로 마지막 변경 시점을 알 수 있습니다.    
   - #### Configuration
        
-      
-    @Configuration
-    @EnableJpaAuditing
-        
-        
-        
+<pre><code>      
+@Configuration
+@EnableJpaAuditing
+</code></pre>      
+                
   - #### Auditing Annotaion
-      
-     
-    @CreatedDate
-    @CreatedBy
-    @LastModifiedDate
-    @LastModifiedBy
-     
+<pre><code>
+@CreatedDate
+@CreatedBy
+@LastModifiedDate
+@LastModifiedBy
+</code></pre>     
      
 
-위의 어노테이션을 이용하여 다음과 같이 구현해주면 된다.
+위의 어노테이션을 이용하여 다음과 같이 구현해주면 됩니다.
  
     @MappedSuperclass
     @EntityListeners(value = AuditingEntityListener.class)
@@ -235,7 +225,7 @@ PostTag.java
 
 3.Envers
 -------------
-@Audtied 어노테이션을 추가하면 히스토리 테이블이 자동으로 생성되어 테이블의 생성, 수정, 삭제 전체 이력을 남긴다. Audit는 마지막 수정일자, 수정자만 알고있기 때문에 데이터 추적에 어려움이 있는데, Audit와 Envers를 같이 사용하게 되면 데이터 관리, 추적에 좋다. 
+@Audtied 어노테이션을 추가하면 히스토리 테이블이 자동으로 생성되어 테이블의 생성, 수정, 삭제 전체 이력을 남깁니다. Audit는 마지막 수정일자, 수정자만 알고있기 때문에 데이터 추적에 어려움이 있는데, Audit와 Envers를 같이 사용하게 되면 데이터 관리, 추적에 편리합니다.
 
  
  
@@ -255,7 +245,7 @@ PostTag.java
 
 4.@DataJpaTest
 ------------
- JPA 테스트 어노테이션이다. controller, service 등을 만들지 않아도 테스트가 가능한게 장점이다. 테스트가 끝나면 데이터는 rollback 된다.
+ JPA 테스트 어노테이션이다. controller, service 등을 만들지 않아도 테스트가 가능한게 장점입니다. 테스트가 끝나면 데이터는 rollback 됩니다.
  
  
    - #### Annotaion
@@ -266,7 +256,7 @@ PostTag.java
 @Import(JpaAuditingConfiguration.class)
 </code></pre>    
           
-Auditing을 사용하고 있다면 @Import(JpaAuditingConfiguration.class)를 해줘야 순조로운 테스트가 가능하다. 
+Auditing을 사용하고 있다면 @Import(JpaAuditingConfiguration.class)를 해야합니다.
  
 
 
