@@ -3,6 +3,7 @@ package com.test.web.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.test.web.controller.interfaces.CommentControllerInterface;
@@ -33,7 +34,7 @@ public class CommentController implements CommentControllerInterface
 	}
 
 	@Override
-	public Comment one(Long seq)
+	public Comment one(@PathVariable Long seq)
 	{
 		return commentService.getOne(seq);
 	}

@@ -3,6 +3,7 @@ package com.test.web.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.test.web.controller.interfaces.PostControllerInterface;
@@ -34,7 +35,7 @@ public class PostController implements PostControllerInterface
 	}
 
 	@Override
-	public Post one(Long seq)
+	public Post one(@PathVariable Long seq)
 	{
 		return postService.getOne(seq);
 	}

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,18 +14,18 @@ import com.test.web.entities.Phone;
 @RequestMapping(value = "/phone")
 public interface PhoneControllerInterface
 {
-	@PostMapping("/insert")
+	@PostMapping("")
 	public Phone insert(String token, String number);
 
 	@GetMapping("")
 	public List<Phone> list();
 	
-	@GetMapping("/one")
-	public Phone one(Long seq);
+	@GetMapping("{seq}")
+	public Phone one(@PathVariable Long seq);
 	
-	@PutMapping("/change")
+	@PutMapping("")
 	public Phone changeNumber(String number, String newNumber);
 	
-	@DeleteMapping("/delete")
-	public Phone delete(Long seq);
+	@DeleteMapping("{seq}")
+	public Phone delete(@PathVariable Long seq);
 }

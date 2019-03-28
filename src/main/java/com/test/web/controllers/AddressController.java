@@ -3,6 +3,7 @@ package com.test.web.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.test.web.controller.interfaces.AddressControllerInterface;
@@ -34,7 +35,7 @@ public class AddressController implements AddressControllerInterface
 	}
 
 	@Override
-	public Address one(Long seq)
+	public Address one(@PathVariable Long seq)
 	{
 		return addressService.getOne(seq);
 	}

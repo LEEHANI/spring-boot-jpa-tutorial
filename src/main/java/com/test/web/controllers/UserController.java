@@ -3,6 +3,7 @@ package com.test.web.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -38,13 +39,13 @@ public class UserController implements UserControllerInterface
 	}
 
 	@Override
-	public User one(Long seq)
+	public User one(@PathVariable Long seq)
 	{
 		return userService.getOne(seq);
 	}
 
 	@Override
-	public void delete(Long seq)
+	public void delete(@PathVariable Long seq)
 	{
 		userService.delete(seq);
 	}

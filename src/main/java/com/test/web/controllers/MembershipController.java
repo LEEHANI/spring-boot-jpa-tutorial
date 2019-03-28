@@ -3,6 +3,7 @@ package com.test.web.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.test.web.controller.interfaces.MembershipControllerInterface;
@@ -34,7 +35,7 @@ public class MembershipController implements MembershipControllerInterface
 	}
 
 	@Override
-	public Membership one(Long seq)
+	public Membership one(@PathVariable Long seq)
 	{
 		return membershipService.getOne(seq);
 	}

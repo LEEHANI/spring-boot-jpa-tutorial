@@ -3,6 +3,7 @@ package com.test.web.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.test.web.controller.interfaces.PhoneControllerInterface;
@@ -34,7 +35,7 @@ public class PhoneController implements PhoneControllerInterface
 	}
 
 	@Override
-	public Phone one(Long seq)
+	public Phone one(@PathVariable Long seq)
 	{
 		return phoneService.getOne(seq);
 	}
@@ -48,7 +49,7 @@ public class PhoneController implements PhoneControllerInterface
 	}
 	
 	@Override
-	public Phone delete(Long seq)
+	public Phone delete(@PathVariable Long seq)
 	{
 		return phoneService.delete(seq);
 	}
