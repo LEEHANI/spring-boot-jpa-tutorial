@@ -2,6 +2,8 @@ package com.test.web.controller.interfaces;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -37,4 +39,8 @@ public interface UserControllerInterface
 	
 	@PutMapping("")
 	public User changePassword(String userId, String password, String newPassword);
+	
+	@GetMapping("page")
+	public Page<User> list(Pageable pageable);
+	
 }

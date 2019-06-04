@@ -3,6 +3,8 @@ package com.test.web.services;
 import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.test.web.entities.User;
@@ -26,5 +28,10 @@ public class UserService extends CommonService<User>
 		}
 		
 		return null;
+	}
+	
+	public Page<User> list(Pageable pageable)
+	{
+		return repository.findAll(pageable);
 	}
 }
