@@ -1,7 +1,7 @@
 package com.test.web.entities;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -37,5 +37,5 @@ public class Tag extends BaseEntity
 	@Default
 	@OneToMany(fetch = FetchType.LAZY, mappedBy="tag", cascade = CascadeType.ALL)
 	@JsonBackReference
-	private List<PostTag> postTags = new ArrayList<PostTag>();
+	private Set<PostTag> postTags = new HashSet<PostTag>();
 }

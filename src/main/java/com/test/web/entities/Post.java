@@ -1,7 +1,7 @@
 package com.test.web.entities;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -54,12 +54,12 @@ public class Post extends BaseEntity
 	@Default
 	@OneToMany(fetch = FetchType.LAZY, mappedBy="post", cascade = CascadeType.ALL)
 	@JsonManagedReference
-	private List<PostTag> postTags = new ArrayList<PostTag>();
+	private Set<PostTag> postTags = new HashSet<PostTag>();
 	
 	@Default
 	@OneToMany(fetch = FetchType.LAZY, mappedBy="post", cascade = CascadeType.ALL)
 	@JsonManagedReference
-	private List<Comment> comments = new ArrayList<Comment>();
+	private Set<Comment> comments = new HashSet<Comment>();
 	
 	public void bind(PostTag postTag)
 	{

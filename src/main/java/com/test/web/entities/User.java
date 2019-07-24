@@ -1,7 +1,7 @@
 package com.test.web.entities;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -77,16 +77,16 @@ public class User extends BaseEntity
 	@Default
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "user_seq")
-	private List<Phone> phones = new ArrayList<Phone>();
+	private Set<Phone> phones = new HashSet<Phone>();
 	
 	/**
 	 * 1:n 양방향
 	 */
 	@NotAudited
 	@Default
-	@OneToMany(fetch = FetchType.LAZY, mappedBy="writer", cascade = CascadeType.ALL)
+	@OneToMany(fetch = FetchType.EAGER, mappedBy="writer", cascade = CascadeType.ALL)
 	@JsonManagedReference
-	private List<Post> posts = new ArrayList<Post>();
+	private Set<Post> posts = new HashSet<Post>();
 	
 	public void  bind(Membership membership)
 	{
