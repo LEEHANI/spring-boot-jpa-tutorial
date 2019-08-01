@@ -1,8 +1,11 @@
 package com.test.web.repositories;
 
-import com.test.web.entities.Tag;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface TagRepository extends CommonRepository<Tag>
+import com.test.web.entities.Tag;
+import com.test.web.entities.TagPrimaryKey;
+
+public interface TagRepository extends JpaRepository<Tag, TagPrimaryKey>//extends CommonRepository<Tag>
 {
 
 }

@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import com.test.web.entities.Tag;
 
 @Service
-public class TagService extends CommonService<Tag>
+public class TagService //extends CommonService<Tag>
 {
 
 }

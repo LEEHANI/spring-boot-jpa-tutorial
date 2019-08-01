@@ -4,6 +4,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ForeignKey;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
@@ -22,6 +23,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 //@RequiredArgsConstructor(staticName= "on")
+//@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class)
 public class PostTag extends BaseEntity
 {
 	private static final long serialVersionUID = 1L;
@@ -32,7 +34,8 @@ public class PostTag extends BaseEntity
 	private Post post;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn( name = "tag_seq", foreignKey = @ForeignKey(name = "FKEY_TAG_SEQ_IN_POST_TAG"))
+//	@JoinColumn( name = "tag_seq", foreignKey = @ForeignKey(name = "FKEY_TAG_SEQ_TITLE__IN_POST_TAG"))
+	@JoinColumns({@JoinColumn( name = "tag_seq"), @JoinColumn( name = "tag_title")})
 	@JsonManagedReference
 	private Tag tag;
 	

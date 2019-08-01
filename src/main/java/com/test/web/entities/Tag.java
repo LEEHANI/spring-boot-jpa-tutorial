@@ -4,7 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
@@ -16,7 +16,6 @@ import lombok.Builder;
 import lombok.Builder.Default;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
 import lombok.Setter;
 
 @Entity
@@ -26,13 +25,17 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 //@RequiredArgsConstructor(staticName= "on")
-public class Tag extends BaseEntity
+//@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class)
+public class Tag //extends AbstractAuditing
 {
 	private static final long serialVersionUID = 1L;
 	
-	@NonNull
-	@Column(name = "title", nullable = false, updatable = true)
-	private String title;
+	@EmbeddedId
+	private TagPrimaryKey tagPK;
+	
+//	@NonNull
+//	@Column(name = "title", nullable = false, updatable = true)
+//	private String title;
 	
 	@Default
 	@OneToMany(fetch = FetchType.LAZY, mappedBy="tag", cascade = CascadeType.ALL)

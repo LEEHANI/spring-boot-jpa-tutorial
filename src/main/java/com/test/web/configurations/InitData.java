@@ -1,13 +1,14 @@
 package com.test.web.configurations;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+import com.google.common.collect.Sets;
 import com.test.web.entities.Address;
 import com.test.web.entities.Comment;
 import com.test.web.entities.Membership;
@@ -15,8 +16,10 @@ import com.test.web.entities.Phone;
 import com.test.web.entities.Post;
 import com.test.web.entities.PostTag;
 import com.test.web.entities.Tag;
+import com.test.web.entities.TagPrimaryKey;
 import com.test.web.entities.User;
 import com.test.web.enums.Gender;
+import com.test.web.repositories.PostRepository;
 import com.test.web.repositories.UserRepository;
 
 @Component
@@ -24,6 +27,9 @@ public class InitData implements CommandLineRunner
 {
 	@Autowired
 	private UserRepository userRepository;
+	
+	@Autowired
+	private PostRepository postRepository;
 	
 	@Override
 	public void run(String... args) throws Exception
@@ -48,7 +54,7 @@ public class InitData implements CommandLineRunner
 		user2.bind(Address.builder().city("서울").street("언주동").build());
 		
 		// 1:n
-		List<Phone> phones1 = Arrays.asList
+		Set<Phone> phones1 = Sets.newHashSet
 		(
 			Phone.builder().token("QOWHSMFM291827").number("01012345678").build(),
 			Phone.builder().token("IWQORR12WWQ").number("01056781290").build()
@@ -62,15 +68,19 @@ public class InitData implements CommandLineRunner
 		user1.bind(post1);
 		
 		Post post2 = Post.builder().title("하이염").content("방가").build();
-		user2.bind(post2);
+		Post post3 = Post.builder().title("하이염").content("방가").build();
+		Post post4 = Post.builder().title("하이염").content("방가").build();
+//		user2.bind(post2);
 		
 		users.add(user1);
 		users.add(user2);
 		users.add(user3);
 		
-		Tag tag1 = Tag.builder().title("환상적").build();
-		Tag tag2 = Tag.builder().title("야호").build();
-		
+		Tag tag1 = Tag.builder().tagPK(new TagPrimaryKey(1L, "태그1")).build();
+		Tag tag2 = Tag.builder().tagPK(new TagPrimaryKey(2L, "야호")).build();
+//		Tag tag1 = Tag.builder().tagPK(TagPK.builder().title("태그1").build()).build();
+//		Tag tag2 = Tag.builder().tagPK(TagPK.builder().title("야호").build()).build();
+	
 		PostTag postTag1 = PostTag.builder().tag(tag1).build();
 		PostTag postTag2 = PostTag.builder().tag(tag2).build();
 		
@@ -83,6 +93,22 @@ public class InitData implements CommandLineRunner
 		
 		post1.bind(Comment.builder().content("첫 댓글 달아요~").build());
 		post1.bind(Comment.builder().content("두번째 댓글 달아요~").build());
+		post1.bind(Comment.builder().content("세번째 댓글 달아요~").build());
+		post1.bind(Comment.builder().content("네번째 댓글 달아요~").build());
+		post2.bind(Comment.builder().content("포스트2의 첫번째 댓글 달아요~").build());
+		post3.bind(Comment.builder().content("포스트2의 첫번째 댓글 달아요~").build());
+		post3.bind(Comment.builder().content("포스트2의 첫번째 댓글 달아요~").build());
+		post3.bind(Comment.builder().content("포스트2의 첫번째 댓글 달아요~").build());
+		post3.bind(Comment.builder().content("포스트2의 첫번째 댓글 달아요~").build());
+		post3.bind(Comment.builder().content("포스트2의 첫번째 댓글 달아요~").build());
+		post3.bind(Comment.builder().content("포스트2의 첫번째 댓글 달아요~").build());
+		post3.bind(Comment.builder().content("포스트2의 첫번째 댓글 달아요~").build());
+		post3.bind(Comment.builder().content("포스트2의 첫번째 댓글 달아요~").build());
+		
+//		postRepository.save(post1);
+//		postRepository.save(post2);
+//		postRepository.save(post3);
+//		postRepository.save(post4);
 		
 		userRepository.saveAll(users);
 		
