@@ -33,10 +33,18 @@ public class PostController implements PostControllerInterface
 	{
 		return postService.getList();
 	}
+	
+	@Override
+	public List<Post> joinFetchList()
+	{
+		return postService.findAllJoinFetch();
+	}
 
 	@Override
 	public Post one(@PathVariable Long seq)
 	{
-		return postService.getOne(seq);
+		Post post = postService.getOne(seq);
+		
+		return post;
 	}
 }

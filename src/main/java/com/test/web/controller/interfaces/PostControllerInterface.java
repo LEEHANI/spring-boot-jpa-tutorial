@@ -18,6 +18,9 @@ public interface PostControllerInterface
 	@GetMapping("")
 	public List<Post> list();
 	
+	@GetMapping("fetch")
+	public List<Post> joinFetchList();
+	
 	@GetMapping("{seq}")
 	public Post one(@PathVariable Long seq);
 }
