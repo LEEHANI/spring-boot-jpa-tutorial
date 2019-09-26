@@ -47,6 +47,12 @@ spring:
 </code></pre>
 
 <hr/>
+<br/>
+
+테이블 구조    
+-------------
+![er_diagram](./images/ER_Diagram.png)     
+
 
 
 1.Spring Data Jpa 
